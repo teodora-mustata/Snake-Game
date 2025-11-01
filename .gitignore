@@ -1,0 +1,35 @@
+# Build folders
+x64/
+x86/
+Debug/
+Release/
+ipch/
+*.opendb
+*.VC.db
+
+# Visual Studio cache and user files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Compiled binaries
+*.exe
+*.obj
+*.lib
+*.pdb
+*.dll
+*.log
+*.tlog
+
+# Qt generated files
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+
+# Other temporary files
+*.cache
+*.db
+*.idb
+*.ipch

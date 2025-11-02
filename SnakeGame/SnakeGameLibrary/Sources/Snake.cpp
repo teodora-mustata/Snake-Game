@@ -25,9 +25,11 @@ void Snake::eatFruit() {
 }
 
 void Snake::hitWall() {
+    // ...
     notify(SnakeEvent::HitWall);
 }
 
 void Snake::hitWall() {
+    // ...
     notify(SnakeEvent::HitSelf);
 }

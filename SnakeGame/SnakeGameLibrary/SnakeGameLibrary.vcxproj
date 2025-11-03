@@ -18,6 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="Headers\EnumEvents.h" />
+    <ClInclude Include="Headers\IObserverMap.h" />
+    <ClInclude Include="Headers\IObserverSnake.h" />
+    <ClInclude Include="Headers\ISubjectMap.h" />
+    <ClInclude Include="Headers\ISubjectSnake.h" />
+    <ClInclude Include="Headers\Map.h" />
+    <ClInclude Include="Headers\Score.h" />
+    <ClInclude Include="Headers\Snake.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="SnakeGameLibrary.cpp" />
+    <ClCompile Include="Sources\Map.cpp" />
+    <ClCompile Include="Sources\Score.cpp" />
+    <ClCompile Include="Sources\Snake.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,9 +144,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="SnakeGameLibrary.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

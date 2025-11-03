@@ -1,5 +1,7 @@
-#include "Snake.h"
 #include <algorithm>
+#include "../Headers/IObserverSnake.h"
+#include "../Headers/Map.h"
+#include "../Headers/Snake.h"
 
 void Snake::attach(IObserverSnake* obs) {
     observers.push_back(obs);
@@ -29,7 +31,3 @@ void Snake::hitWall() {
     notify(SnakeEvent::HitWall);
 }
 
-void Snake::hitWall() {
-    // ...
-    notify(SnakeEvent::HitSelf);
-}

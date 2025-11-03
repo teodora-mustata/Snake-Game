@@ -1,5 +1,5 @@
 #pragma once
-#include "SnakeEvents.h"
+#include "EnumEvents.h"
 
 class IObserverSnake {
 public:

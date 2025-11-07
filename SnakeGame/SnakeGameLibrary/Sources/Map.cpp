@@ -1,36 +1,8 @@
-//
-//#include <algorithm>
-//#include "../Headers/IObserverMap.h"
-//#include "../Headers/Map.h"
-//#include "../Headers/Snake.h"
-//
-//void Map::attach(IObserverMap* obs) {
-//    observers.push_back(obs);
-//}
-//
-//void Map::detach(IObserverMap* obs) {
-//    observers.erase(std::remove(observers.begin(), observers.end(), obs), observers.end());
-//}
-//
-//void Map::notify(MapEvent event, int x, int y) {
-//    for (auto obs : observers)
-//        obs->update(event, x, y);
-//}
-//
-//void Map::spawnFruit(int x, int y) {
-//    // logica plasare fruct
-//    notify(MapEvent::FruitAppeared, x, y);
-//}
-//
-//void Map::removeFruit(int x, int y) {
-//    // ...
-//    notify(MapEvent::FruitRemoved, x, y);
-//}
+
 
 #include <algorithm>
 #include "../Headers/Map.h"
 
-//   Constructor & getteri
 
 Map::Map(int w, int h)
     : width(w), height(h) {}
@@ -42,7 +14,6 @@ std::pair<int, int> Map::getCenterPosition() const {
     return { width / 2, height / 2 };
 }
 
-//       Observer API
 
 void Map::attach(IObserverMap* obs) {
     observers.push_back(obs);
@@ -58,7 +29,6 @@ void Map::notify(MapEvent event, int x, int y) {
     }
 }
 
-//    Utilitare de harta
 
 bool Map::isInside(int x, int y) const {
     return x >= 0 && y >= 0 && x < width && y < height;
@@ -75,12 +45,10 @@ bool Map::hasAnyFruit() const {
     return !fruits.empty();
 }
 
-//   Gestionare de fructe
 
 void Map::spawnFruit(int x, int y) {
     if (!isInside(x, y)) return;
 
-    // Politica actuala: mentinem max. 1 fruct activ; ignoram daca exista deja.
     if (hasAnyFruit()) return;
 
     fruits.emplace_back(x, y);

@@ -10,7 +10,7 @@ Snake::Snake(int startX, int startY)
     body.push_back({ startX, startY });
 }
 
-//observer
+
 void Snake::attach(IObserverSnake* obs) {
     observers.push_back(obs);
 }
@@ -24,7 +24,7 @@ void Snake::notify(SnakeEvent event) {
         obs->update(event);
 }
 
-//logica
+
 void Snake::setDirection(Direction newDir) {
 
     if ((direction == Direction::Up && newDir == Direction::Down) ||
@@ -36,7 +36,7 @@ void Snake::setDirection(Direction newDir) {
     direction = newDir;
 }
 
-void Snake::move() {
+void Snake::move(Map& map) {
     
     if (!alive) return;
 
@@ -52,6 +52,8 @@ void Snake::move() {
     body.insert(body.begin(), newHead);
 
     body.pop_back();
+
+    checkCollisions(map);
 
     notify(SnakeEvent::Move);
 }
@@ -75,15 +77,40 @@ void Snake::hitWall() {
 void Snake::hitSelf()
 {
     alive = false;
-    //trebuie notify
+    notify(SnakeEvent::HitSelf);
 
 }
+//
+//std::pair<int, int> Snake::getHeadPosition() const {
+//    return body.front();
+//}
+//
+//const std::vector<std::pair<int, int>>& Snake::getBody() const {
+//    return body;
+//}
 
-std::pair<int, int> Snake::getHeadPosition() const {
-    return body.front();
+void Snake::checkCollisions(Map& map) {
+    if (!alive) return;
+
+    auto head = body.front();
+
+   
+    if (head.first < 0 || head.second < 0 ||
+        head.first >= map.getWidth() || head.second >= map.getHeight()) {
+        hitWall();
+        return;
+    }
+
+    
+    for (size_t i = 1; i < body.size(); ++i) {
+        if (body[i] == head) {
+            hitSelf();
+            return;
+        }
+    }
+
+    /*if (map.hasFruitAt(head.first, head.second)) {
+        eatFruit();
+        map.removeFruit(head.first, head.second);
+    }*/
 }
-
-const std::vector<std::pair<int, int>>& Snake::getBody() const {
-    return body;
-}
-

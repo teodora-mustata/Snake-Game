@@ -8,7 +8,7 @@
 class Snake : public ISubjectSnake {
 private:
     std::vector<IObserverSnake*> observers;
-    // restul detaliilor despre sarpe gen lungime, pozitie, directie etc.
+
 
     std::vector<std::pair<int, int>> body;
     Direction direction;
@@ -21,14 +21,16 @@ public:
     void detach(IObserverSnake* obs) override;
     void notify(SnakeEvent event) override;
 
-    void move();
+    void move(Map& map);
     void eatFruit();
     void hitWall();
     void hitSelf();
 
+    void checkCollisions(Map& map);
     void setDirection(Direction newDir);
-    std::pair<int, int> getHeadPosition() const;
+    /*std::pair<int, int> getHeadPosition() const;
     const std::vector<std::pair<int, int>>& getBody() const;
+    */
 
     bool isAlive() const { return alive; }
 };

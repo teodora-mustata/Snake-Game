@@ -1,19 +1,19 @@
 #pragma once
 #include <utility>
-#include "Headers/Map.h"
+#include "Map.h"
 
 class GameController {
 private:
-    Map& map;                 
-    double elapsed = 0.0;  
-    int nextSpawnSec = 0;  
+    Map& map;
+    double elapsed = 0.0;
+    int nextSpawnSec = 0;
 
-    void scheduleNextSpawnSec();  
+    void scheduleNextSpawnSec();
 
 public:
     explicit GameController(Map& m);
 
-    void initializeMap();  
+    void initializeMap();
 
     void updateMap(double deltaTime);
 

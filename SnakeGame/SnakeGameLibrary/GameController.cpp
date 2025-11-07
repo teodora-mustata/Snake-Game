@@ -1,5 +1,5 @@
 #include <cstdlib>   
-#include "GameController.h"
+#include "Headers\GameController.h"
 
 GameController::GameController(Map& m)
     : map(m) {}

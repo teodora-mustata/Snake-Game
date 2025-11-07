@@ -37,7 +37,7 @@
     <ClInclude Include="Headers\Snake.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="GameController.h">
+    <ClInclude Include="Headers\GameController.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

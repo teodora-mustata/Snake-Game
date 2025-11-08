@@ -97,7 +97,7 @@ void Snake::hitSelf()
 //std::pair<int, int> Snake::getHeadPosition() const {
 //    return body.front();
 //}
-//
-//const std::vector<std::pair<int, int>>& Snake::getBody() const {
-//    return body;
-//}
+
+const std::vector<std::pair<int, int>>& Snake::getBody() const {
+    return body;
+}

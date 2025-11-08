@@ -25,9 +25,8 @@ public:
 
     void checkCollisions(Map& map);
     void setDirection(Direction newDir);
-    /*std::pair<int, int> getHeadPosition() const;
+    // std::pair<int, int> getHeadPosition() const;
     const std::vector<std::pair<int, int>>& getBody() const;
-    */
 
     bool isAlive() const { return alive; }
 };

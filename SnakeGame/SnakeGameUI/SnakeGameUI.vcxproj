@@ -110,16 +110,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="SnakeWidget.cpp" />
     <QtRcc Include="SnakeGameUI.qrc" />
     <QtUic Include="SnakeGameUI.ui" />
-    <QtMoc Include="SnakeGameUI.h" />
-    <ClCompile Include="SnakeGameUI.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SnakeGameLibrary\SnakeGameLibrary.vcxproj">
       <Project>{3ad9ff22-c764-4683-8092-02379aacc64e}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MainWindow.h" />
+    <QtMoc Include="SnakeWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

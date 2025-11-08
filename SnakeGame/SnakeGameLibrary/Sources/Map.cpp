@@ -41,6 +41,10 @@ bool Map::hasAnyFruit() const {
     return !fruits.empty();
 }
 
+std::vector<std::pair<int, int>> Map::getFruits()
+{
+    return fruits;
+}
 
 void Map::spawnFruit(int x, int y) {
     if (!isInside(x, y)) return;

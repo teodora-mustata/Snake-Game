@@ -37,28 +37,41 @@ void Snake::setDirection(Direction newDir) {
 }
 
 void Snake::move(Map& map) {
-    
     if (!alive) return;
-
-    std::pair<int, int> newHead = body.front();
-
+    std::pair<int, int> head = body.front();
+    int headX = head.first;
+    int headY = head.second;
     switch (direction) {
-    case Direction::Up:    newHead.second--; break;
-    case Direction::Down:  newHead.second++; break;
-    case Direction::Left:  newHead.first--;  break;
-    case Direction::Right: newHead.first++;  break;
+    case Direction::Up: headY--; break;
+    case Direction::Down: headY++; break;
+    case Direction::Left: headX--; break;
+    case Direction::Right: headX++; break;
     }
 
-    body.insert(body.begin(), newHead);
+    if (!map.isInside(headX, headY)) {
+        hitWall();
+        return;
+    }
 
-    body.pop_back();
+    for (auto& part : body) {
+        if (part.first == headX && part.second == headY) {
+            hitSelf();
+            return;
+        }
+    }
 
-    checkCollisions(map);
+    if (map.hasFruit(headX, headY)) {
+        eatFruit();
+        map.removeFruit(headX, headY);
+    }
+    else {
+        body.pop_back();
+    }
+
+    body.insert(body.begin(), { headX, headY });
 
     notify(SnakeEvent::Move);
 }
-
-
 
 void Snake::eatFruit() {
 
@@ -88,29 +101,3 @@ void Snake::hitSelf()
 //const std::vector<std::pair<int, int>>& Snake::getBody() const {
 //    return body;
 //}
-
-void Snake::checkCollisions(Map& map) {
-    if (!alive) return;
-
-    auto head = body.front();
-
-   
-    if (head.first < 0 || head.second < 0 ||
-        head.first >= map.getWidth() || head.second >= map.getHeight()) {
-        hitWall();
-        return;
-    }
-
-    
-    for (size_t i = 1; i < body.size(); ++i) {
-        if (body[i] == head) {
-            hitSelf();
-            return;
-        }
-    }
-
-    /*if (map.hasFruitAt(head.first, head.second)) {
-        eatFruit();
-        map.removeFruit(head.first, head.second);
-    }*/
-}

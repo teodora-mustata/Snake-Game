@@ -1,8 +1,5 @@
-
-
 #include <algorithm>
 #include "../Headers/Map.h"
-
 
 Map::Map(int w, int h)
     : width(w), height(h) {}
@@ -13,7 +10,6 @@ int Map::getHeight() const { return height; }
 std::pair<int, int> Map::getCenterPosition() const {
     return { width / 2, height / 2 };
 }
-
 
 void Map::attach(IObserverMap* obs) {
     observers.push_back(obs);

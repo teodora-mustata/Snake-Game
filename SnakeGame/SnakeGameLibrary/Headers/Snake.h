@@ -4,18 +4,15 @@
 #include "IObserverSnake.h"
 #include "EnumEvents.h"
 
-
 class Snake : public ISubjectSnake {
 private:
     std::vector<IObserverSnake*> observers;
-
 
     std::vector<std::pair<int, int>> body;
     Direction direction;
     bool alive;
 public:
     Snake(int startX = 0, int startY = 0);
-
 
     void attach(IObserverSnake* obs) override;
     void detach(IObserverSnake* obs) override;

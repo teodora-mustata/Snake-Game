@@ -4,8 +4,6 @@
 #include "ISubjectMap.h"
 #include "IObserverMap.h"
 
-
-
 class Map : public ISubjectMap {
 private:
     int width;

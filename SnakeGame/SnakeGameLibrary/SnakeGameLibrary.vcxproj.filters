@@ -5,54 +5,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Headers">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{8bb6c2b6-b8e6-4b41-b328-7ac9282bea36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources">
+    <Filter Include="Source Files">
       <UniqueIdentifier>{26d7c777-5969-4252-baa3-e90465ee965c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\EnumEvents.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="EnumEvents.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\IObserverMap.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="GameController.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\IObserverSnake.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="IObserverMap.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\ISubjectMap.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="IObserverSnake.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\ISubjectSnake.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="ISubjectMap.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Map.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="ISubjectSnake.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Score.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Snake.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\GameController.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAPI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Map.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Score.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Snake.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="GameController.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Snake.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFactory.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

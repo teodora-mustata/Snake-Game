@@ -1,5 +1,5 @@
-#include "../Headers/EnumEvents.h"
-#include "../Headers/Score.h"
+#include "EnumEvents.h"
+#include "Score.h"
 
 Score::Score() : points(0) {}
 

@@ -29,7 +29,7 @@ public:
     bool hasFruit(int x, int y) const;
     bool hasAnyFruit() const;      
 
-    std::vector<std::pair<int, int>> getFruits();
+    std::vector<std::pair<int, int>> getFruits() const;
 
     void spawnFruit(int x, int y);  
     void removeFruit(int x, int y); 

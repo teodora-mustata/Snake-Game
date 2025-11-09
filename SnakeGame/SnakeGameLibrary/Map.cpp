@@ -1,5 +1,5 @@
 #include <algorithm>
-#include "../Headers/Map.h"
+#include "Map.h"
 
 Map::Map(int w, int h)
     : width(w), height(h) {}
@@ -21,7 +21,8 @@ void Map::detach(IObserverMap* obs) {
 
 void Map::notify(MapEvent event, int x, int y) {
     for (auto* obs : observers) {
-        obs->update(event, x, y);
+        if (obs)
+            obs->update(event, x, y);
     }
 }
 
@@ -41,7 +42,7 @@ bool Map::hasAnyFruit() const {
     return !fruits.empty();
 }
 
-std::vector<std::pair<int, int>> Map::getFruits()
+std::vector<std::pair<int, int>> Map::getFruits() const 
 {
     return fruits;
 }
@@ -52,7 +53,7 @@ void Map::spawnFruit(int x, int y) {
     if (hasAnyFruit()) return;
 
     fruits.emplace_back(x, y);
-    notify(MapEvent::FruitAppeared, x, y);
+    notify(MapEvent::FruitSpawned, x, y);
 }
 
 void Map::removeFruit(int x, int y) {

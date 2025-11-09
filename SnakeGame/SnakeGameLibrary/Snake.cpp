@@ -1,7 +1,7 @@
 #include <algorithm>
-#include "../Headers/IObserverSnake.h"
-#include "../Headers/Map.h"
-#include "../Headers/Snake.h"
+#include "IObserverSnake.h"
+#include "Map.h"
+#include "Snake.h"
 
 
 Snake::Snake(int startX, int startY)

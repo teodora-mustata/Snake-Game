@@ -19,21 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\EnumEvents.h" />
-    <ClInclude Include="Headers\GameController.h" />
-    <ClInclude Include="Headers\IObserverMap.h" />
-    <ClInclude Include="Headers\IObserverSnake.h" />
-    <ClInclude Include="Headers\ISubjectMap.h" />
-    <ClInclude Include="Headers\ISubjectSnake.h" />
-    <ClInclude Include="Headers\Map.h" />
-    <ClInclude Include="Headers\Score.h" />
-    <ClInclude Include="Headers\Snake.h" />
+    <ClInclude Include="EnumEvents.h" />
+    <ClInclude Include="GameAPI.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="GameFactory.h" />
+    <ClInclude Include="IGameAPI.h" />
+    <ClInclude Include="IObserverMap.h" />
+    <ClInclude Include="IObserverSnake.h" />
+    <ClInclude Include="ISubjectMap.h" />
+    <ClInclude Include="ISubjectSnake.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="Snake.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameAPI.cpp" />
     <ClCompile Include="GameController.cpp" />
-    <ClCompile Include="Sources\Map.cpp" />
-    <ClCompile Include="Sources\Score.cpp" />
-    <ClCompile Include="Sources\Snake.cpp" />
+    <ClCompile Include="GameFactory.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -1,11 +1,23 @@
+
+
+
 #pragma once
 #include <QMainWindow>
+#include <QTimer>
+#include "IGameAPI.h"
 #include "SnakeWidget.h"
-#include "Map.h"
-#include "Snake.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
+
+private:
+    IGameAPI* gameApi;        
+    SnakeWidget* snakeWidget;
+    QTimer* gameTimer;
+
+protected:
+    void keyPressEvent(QKeyEvent* event) override;
+
 public:
-    MainWindow(QWidget* parent = nullptr);
+    explicit MainWindow(IGameAPI* api, QWidget* parent = nullptr);
 };

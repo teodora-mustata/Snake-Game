@@ -23,7 +23,7 @@ public:
     void hitWall();
     void hitSelf();
 
-    void checkCollisions(Map& map);
+   // void checkCollisions(Map& map);
     void setDirection(Direction newDir);
     // std::pair<int, int> getHeadPosition() const;
     const std::vector<std::pair<int, int>>& getBody() const;

@@ -1,6 +1,8 @@
 #include "EnumEvents.h"
 #include "Score.h"
 
+
+
 Score::Score() : points(0) {}
 
 void Score::update(SnakeEvent event) {

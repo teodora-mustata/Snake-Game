@@ -97,4 +97,8 @@ void SnakeWidget::paintEvent(QPaintEvent*) {
         p.setFont(QFont("Arial", 24, QFont::Bold));
         p.drawText(rect(), Qt::AlignCenter, "GAME OVER");
     }
+
+    p.setPen(Qt::white);
+    p.setFont(QFont("Arial", 14, QFont::Bold));
+    p.drawText(10, 25, QString("Score: %1").arg(api->getScore()));
 }

@@ -24,5 +24,6 @@ public:
 
     std::vector<std::pair<int, int>> getFruits() const override;
     std::vector<std::pair<int, int>> getSnakeBody() const override;
+    int getScore() const override;
 };
 

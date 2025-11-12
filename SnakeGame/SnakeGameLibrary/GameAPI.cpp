@@ -5,7 +5,10 @@ GameAPI::GameAPI()
     snake(10, 10),
     score(),
     controller(map, snake, score)
-{}
+{
+    snake.attach(&score);
+
+}
 
 void GameAPI::attachMapObserver(IObserverMap* obs) {
     map.attach(obs);
@@ -33,4 +36,8 @@ std::vector<std::pair<int, int>> GameAPI::getFruits() const {
 
 std::vector<std::pair<int, int>> GameAPI::getSnakeBody() const {
     return snake.getBody();
+}
+
+int GameAPI::getScore() const {
+    return score.getPoints();
 }

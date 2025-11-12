@@ -18,6 +18,10 @@ private:
 protected:
     void keyPressEvent(QKeyEvent* event) override;
 
+private slots:
+    void startGame();
+    void gameOver();
+
 public:
     explicit MainWindow(IGameAPI* api, QWidget* parent = nullptr);
 };

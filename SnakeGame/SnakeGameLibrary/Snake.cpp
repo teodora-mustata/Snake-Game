@@ -1,4 +1,4 @@
-#include <algorithm>
+﻿#include <algorithm>
 #include "IObserverSnake.h"
 #include "Map.h"
 #include "Snake.h"
@@ -76,7 +76,6 @@ void Snake::move(Map& map) {
 void Snake::eatFruit() {
 
     if (!alive) return;
-    body.push_back(body.back());
 
     notify(SnakeEvent::AteFruit);
 }

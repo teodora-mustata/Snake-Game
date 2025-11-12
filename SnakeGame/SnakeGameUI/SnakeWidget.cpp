@@ -1,6 +1,7 @@
 ﻿
 #include "SnakeWidget.h"
 #include <QPainter>
+#include <QTimer>
 #include <algorithm>
 
 SnakeWidget::SnakeWidget(IGameAPI* api, QWidget* parent)
@@ -11,6 +12,29 @@ SnakeWidget::SnakeWidget(IGameAPI* api, QWidget* parent)
 
     fruits = api->getFruits();
     snakeBody = api->getSnakeBody();
+
+    restartButton = new QPushButton("Restart Game", this);
+    restartButton->setStyleSheet(
+        "font-size: 20px; font-weight: bold; background-color: #28a745; color: white; border-radius: 8px; padding: 10px;");
+    restartButton->setVisible(false);
+
+    connect(restartButton, &QPushButton::clicked, [this]() {
+        emit restartSignal();
+        });
+}
+
+
+void SnakeWidget::reset(IGameAPI* newApi) {
+    api = newApi;
+    fruits = api->getFruits();
+    snakeBody = api->getSnakeBody();
+    snakeAlive = true;
+
+    api->attachMapObserver(this);
+    api->attachSnakeObserver(this);
+
+    restartButton->setVisible(false);
+    repaint();
 }
 
 void SnakeWidget::update(MapEvent event, int x, int y) {
@@ -30,7 +54,15 @@ void SnakeWidget::update(SnakeEvent event) {
     }
     else if (event == SnakeEvent::HitWall || event == SnakeEvent::HitSelf) {
         snakeAlive = false;
+        emit gameOverSignal();
         repaint();
+
+        QTimer::singleShot(400, [this]() {
+            int btnWidth = 180;
+            int btnHeight = 50;
+            restartButton->setGeometry(width() / 2 - btnWidth / 2, height() / 2 + 60, btnWidth, btnHeight);
+            restartButton->show();
+            });
     }
 }
 
@@ -57,5 +89,12 @@ void SnakeWidget::paintEvent(QPaintEvent*) {
     for (size_t i = 0; i < snakeBody.size(); ++i) {
         p.setBrush(i == 0 ? Qt::darkGreen : Qt::green);
         p.drawRect(snakeBody[i].first * cellW, snakeBody[i].second * cellH, cellW, cellH);
+    }
+    if (!snakeAlive) {
+        p.setBrush(QColor(0, 0, 0, 150));
+        p.drawRect(rect());
+        p.setPen(Qt::white);
+        p.setFont(QFont("Arial", 24, QFont::Bold));
+        p.drawText(rect(), Qt::AlignCenter, "GAME OVER");
     }
 }

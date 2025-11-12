@@ -1,6 +1,7 @@
 
 #include "MainWindow.h"
 #include <QKeyEvent>
+#include "GameFactory.h"
 
 MainWindow::MainWindow(IGameAPI* api, QWidget* parent)
     : QMainWindow(parent), gameApi(api)
@@ -10,14 +11,31 @@ MainWindow::MainWindow(IGameAPI* api, QWidget* parent)
     setCentralWidget(snakeWidget);
     resize(500, 500);
 
+    connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &MainWindow::gameOver);
+    connect(snakeWidget, &SnakeWidget::restartSignal, this, &MainWindow::startGame);
+
     gameTimer = new QTimer(this);
     connect(gameTimer, &QTimer::timeout, [this]() {
         gameApi->update(0.2);
         });
-    gameTimer->start(200);
 
     gameApi->initialize();
+    gameTimer->start(200);
+}
 
+void MainWindow::startGame() {
+    delete gameApi;            
+    gameApi = createGameAPI();  
+    snakeWidget->reset(gameApi);
+    connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &MainWindow::gameOver);
+
+    gameApi->initialize();
+    gameTimer->start(200);
+  
+}
+
+void MainWindow::gameOver() {
+    gameTimer->stop();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {

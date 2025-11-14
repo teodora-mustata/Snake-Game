@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnakeGameLibrary", "SnakeGa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnakeGameUI", "SnakeGameUI\SnakeGameUI.vcxproj", "{DEDE32D1-5EDE-40F2-9B02-5440F95F09F6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnakeGameTests", "SnakeGameTests\SnakeGameTests.vcxproj", "{8B83B637-4468-4772-8794-30CC3311791F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{DEDE32D1-5EDE-40F2-9B02-5440F95F09F6}.Release|x64.Build.0 = Release|x64
 		{DEDE32D1-5EDE-40F2-9B02-5440F95F09F6}.Release|x86.ActiveCfg = Release|x64
 		{DEDE32D1-5EDE-40F2-9B02-5440F95F09F6}.Release|x86.Build.0 = Release|x64
+		{8B83B637-4468-4772-8794-30CC3311791F}.Debug|x64.ActiveCfg = Debug|x64
+		{8B83B637-4468-4772-8794-30CC3311791F}.Debug|x64.Build.0 = Debug|x64
+		{8B83B637-4468-4772-8794-30CC3311791F}.Debug|x86.ActiveCfg = Debug|Win32
+		{8B83B637-4468-4772-8794-30CC3311791F}.Debug|x86.Build.0 = Debug|Win32
+		{8B83B637-4468-4772-8794-30CC3311791F}.Release|x64.ActiveCfg = Release|x64
+		{8B83B637-4468-4772-8794-30CC3311791F}.Release|x64.Build.0 = Release|x64
+		{8B83B637-4468-4772-8794-30CC3311791F}.Release|x86.ActiveCfg = Release|Win32
+		{8B83B637-4468-4772-8794-30CC3311791F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

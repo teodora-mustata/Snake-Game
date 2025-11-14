@@ -111,6 +111,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SnakeGameLibrary\SnakeGameLibrary.vcxproj">
       <Project>{3ad9ff22-c764-4683-8092-02379aacc64e}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

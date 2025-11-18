@@ -1,3 +1,4 @@
+
 #include "GameController.h"
 #include <random>
 #include <ctime>
@@ -9,9 +10,21 @@ GameController::GameController(Map& m, Snake& s, Score& sc)
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     scheduleNextSpawnSec();
 }
+void GameController::increaseDifficulty() {
+    difficultyLevel++;
+
+    //moveInterval = std::max(0.05, moveInterval - 0.03);
+    moveInterval = std::max(0.12, moveInterval - 0.06); // creste viteza mai agresiv
+
+    if (maxFruits < 5)
+        maxFruits++;
+
+    // (optional) scade timpul pana la spawn
+    // nextSpawnSec = std::max(1, nextSpawnSec - 1);
+}
 
 void GameController::scheduleNextSpawnSec() {
-    nextSpawnSec = 1 + std::rand() % 10;  
+    nextSpawnSec = 1 + std::rand() % 10;
 }
 
 static std::pair<int, int> getRandomFreePosition(const Map& map, const Snake& snake) {
@@ -21,7 +34,6 @@ static std::pair<int, int> getRandomFreePosition(const Map& map, const Snake& sn
     std::uniform_int_distribution<> distY(0, map.getHeight() - 1);
 
     auto center = map.getCenterPosition();
-
     while (true) {
         int x = distX(gen);
         int y = distY(gen);
@@ -36,7 +48,6 @@ static std::pair<int, int> getRandomFreePosition(const Map& map, const Snake& sn
                 break;
             }
         }
-
         if (!onSnake && !map.hasFruit(x, y))
             return { x, y };
     }
@@ -47,15 +58,46 @@ void GameController::initialize() {
     map.spawnFruit(pos.first, pos.second);
 }
 
-void GameController::update(double deltaTime) {
-    elapsed += deltaTime;
+//void GameController::update(double deltaTime) {
+//    elapsed += deltaTime;
+//    if (elapsed >= nextSpawnSec) {
+//        if ((int)map.getFruits().size() < maxFruits) {
+//            auto pos = getRandomFreePosition(map, snake);
+//            map.spawnFruit(pos.first, pos.second);
+//        }
+//        elapsed = 0.0;
+//        scheduleNextSpawnSec();
+//    }
+//
+//    moveElapsed += deltaTime;
+//    while (moveElapsed >= moveInterval) {
+//        snake.move(map);
+//        moveElapsed -= moveInterval;
+//    }
+//}
 
+
+void GameController::update(double deltaTime) {
+    totalTime += deltaTime;
+    if (nextDifficultyIndex < (int)difficultySteps.size() &&
+        totalTime >= difficultySteps[nextDifficultyIndex]) {
+        increaseDifficulty();
+        nextDifficultyIndex++;
+    }
+
+    elapsed += deltaTime;
     if (elapsed >= nextSpawnSec) {
-        auto pos = getRandomFreePosition(map, snake);
-        map.spawnFruit(pos.first, pos.second);
+        if ((int)map.getFruits().size() < maxFruits) {
+            auto pos = getRandomFreePosition(map, snake);
+            map.spawnFruit(pos.first, pos.second);
+        }
         elapsed = 0.0;
         scheduleNextSpawnSec();
     }
 
-    snake.move(map);
+    moveElapsed += deltaTime;
+    while (moveElapsed >= moveInterval) {
+        snake.move(map);
+        moveElapsed -= moveInterval;
+    }
 }

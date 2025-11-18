@@ -1,3 +1,5 @@
+
+
 #include <algorithm>
 #include "Map.h"
 
@@ -26,7 +28,6 @@ void Map::notify(MapEvent event, int x, int y) {
     }
 }
 
-
 bool Map::isInside(int x, int y) const {
     return x >= 0 && y >= 0 && x < width && y < height;
 }
@@ -42,15 +43,12 @@ bool Map::hasAnyFruit() const {
     return !fruits.empty();
 }
 
-std::vector<std::pair<int, int>> Map::getFruits() const 
-{
+std::vector<std::pair<int, int>> Map::getFruits() const {
     return fruits;
 }
 
 void Map::spawnFruit(int x, int y) {
     if (!isInside(x, y)) return;
-
-    if (hasAnyFruit()) return;
 
     fruits.emplace_back(x, y);
     notify(MapEvent::FruitSpawned, x, y);

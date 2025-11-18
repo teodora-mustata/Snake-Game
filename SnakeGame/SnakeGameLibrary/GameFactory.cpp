@@ -1,6 +1,8 @@
+
+
 #include "GameFactory.h"
 #include "GameAPI.h"
 
-IGameAPI* createGameAPI() {
-    return new GameAPI();
+std::unique_ptr<IGameAPI> createGameAPI() {
+    return std::make_unique<GameAPI>();
 }

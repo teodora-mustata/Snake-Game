@@ -11,7 +11,8 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 private:
-    IGameAPI* gameApi;        
+    //IGameAPI* gameApi; 
+    std::unique_ptr<IGameAPI> gameApi;
     SnakeWidget* snakeWidget;
     QTimer* gameTimer;
 
@@ -23,5 +24,7 @@ private slots:
     void gameOver();
 
 public:
-    explicit MainWindow(IGameAPI* api, QWidget* parent = nullptr);
+    /*explicit MainWindow(IGameAPI* api, QWidget* parent = nullptr);*/
+    explicit MainWindow(std::unique_ptr<IGameAPI> api, QWidget* parent = nullptr);
+
 };

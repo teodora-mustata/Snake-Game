@@ -1,4 +1,6 @@
+
 #pragma once
+#include <memory>
 #include "IGameAPI.h"
 
-IGameAPI* createGameAPI();
+std::unique_ptr<IGameAPI> createGameAPI();

@@ -3,11 +3,15 @@
 #include <QKeyEvent>
 #include "GameFactory.h"
 
-MainWindow::MainWindow(IGameAPI* api, QWidget* parent)
-    : QMainWindow(parent), gameApi(api)
-{
+//MainWindow::MainWindow(IGameAPI* api, QWidget* parent)
+//    : QMainWindow(parent), gameApi(api)
+//{
 
-    snakeWidget = new SnakeWidget(gameApi, this);
+MainWindow::MainWindow(std::unique_ptr<IGameAPI> api, QWidget* parent)
+    : QMainWindow(parent), gameApi(std::move(api))
+{
+    //snakeWidget = new SnakeWidget(gameApi, this);
+    snakeWidget = new SnakeWidget(gameApi.get(), this);
     setCentralWidget(snakeWidget);
     resize(500, 500);
 
@@ -24,9 +28,10 @@ MainWindow::MainWindow(IGameAPI* api, QWidget* parent)
 }
 
 void MainWindow::startGame() {
-    delete gameApi;            
+    //delete gameApi;            
     gameApi = createGameAPI();  
-    snakeWidget->reset(gameApi);
+    //snakeWidget->reset(gameApi);
+    snakeWidget->reset(gameApi.get());
     connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &MainWindow::gameOver);
 
     gameApi->initialize();

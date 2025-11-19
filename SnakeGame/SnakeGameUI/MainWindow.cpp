@@ -25,6 +25,10 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(menu->exitButton, &QPushButton::clicked, this, &MainWindow::close);
 
+    connect(game, &GameScreen::backToMenuRequested, [this]() {
+        stack->setCurrentIndex(0);
+        });
+
     resize(500, 500);
 }
 

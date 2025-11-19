@@ -16,6 +16,7 @@ private:
     std::vector<std::pair<int, int>> snakeBody;
     bool snakeAlive = true;
     QPushButton* restartButton = nullptr;
+    QPushButton* backToMenuButton = nullptr;
 
 public:
     SnakeWidget(IGameAPI* api, QWidget* parent = nullptr);
@@ -29,4 +30,5 @@ protected:
 signals:
     void gameOverSignal();
     void restartSignal();
+    void backToMenuSignal();
 };

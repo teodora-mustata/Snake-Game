@@ -17,6 +17,7 @@ public:
 
 signals:
     void gameFinished();
+    void backToMenuRequested();
 
 private slots:
     void gameOver();

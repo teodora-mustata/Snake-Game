@@ -20,6 +20,15 @@ SnakeWidget::SnakeWidget(IGameAPI* api, QWidget* parent)
     connect(restartButton, &QPushButton::clicked, [this]() {
         emit restartSignal();
         });
+
+    backToMenuButton = new QPushButton("Back to Menu", this);
+    backToMenuButton->setStyleSheet(
+        "font-size: 20px; font-weight: bold; background-color: #007bff; color: white; border-radius: 8px; padding: 10px;");
+    backToMenuButton->setVisible(false);
+
+    connect(backToMenuButton, &QPushButton::clicked, [this]() {
+        emit backToMenuSignal();
+        });
 }
 
 
@@ -33,6 +42,8 @@ void SnakeWidget::reset(IGameAPI* newApi) {
     api->attachSnakeObserver(this);
 
     restartButton->setVisible(false);
+    backToMenuButton->setVisible(false);
+
     repaint();
 }
 
@@ -59,8 +70,12 @@ void SnakeWidget::update(SnakeEvent event) {
         QTimer::singleShot(400, [this]() {
             int btnWidth = 180;
             int btnHeight = 50;
+
             restartButton->setGeometry(width() / 2 - btnWidth / 2, height() / 2 + 60, btnWidth, btnHeight);
             restartButton->show();
+
+            backToMenuButton->setGeometry(width() / 2 - btnWidth / 2, height() / 2 + 120, btnWidth, btnHeight);
+            backToMenuButton->show();
             });
     }
 }

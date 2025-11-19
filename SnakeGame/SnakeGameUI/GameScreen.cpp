@@ -1,4 +1,4 @@
-#include "GameScreen.h"
+﻿#include "GameScreen.h"
 #include "GameFactory.h"
 #include <QKeyEvent>
 
@@ -13,6 +13,11 @@ GameScreen::GameScreen(QWidget* parent)
 
     connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &GameScreen::gameOver);
     connect(snakeWidget, &SnakeWidget::restartSignal, this, &GameScreen::restartGame);
+    connect(snakeWidget, &SnakeWidget::backToMenuSignal, [this]() {
+        gameTimer->stop();                // oprește timerul
+        emit backToMenuRequested();       // semnal nou pentru MainWindow
+        });
+
 
     gameTimer = new QTimer(this);
     connect(gameTimer, &QTimer::timeout, [this]() {
@@ -28,7 +33,7 @@ void GameScreen::start()
 
 void GameScreen::gameOver() {
     gameTimer->stop();
-    emit gameFinished();
+    //emit gameFinished();
 }
 
 void GameScreen::restartGame() {

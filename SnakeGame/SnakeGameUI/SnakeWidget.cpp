@@ -1,5 +1,4 @@
-﻿
-#include "SnakeWidget.h"
+﻿#include "SnakeWidget.h"
 #include <QPainter>
 #include <QTimer>
 #include <algorithm>
@@ -70,35 +69,83 @@ void SnakeWidget::paintEvent(QPaintEvent*) {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
 
+    QLinearGradient bgGradient(0, 0, width(), height());
+    bgGradient.setColorAt(0, QColor(60, 60, 60));
+    bgGradient.setColorAt(1, QColor(30, 30, 30));
+    p.fillRect(rect(), bgGradient);
+
     int rows = 20;
     int cols = 20;
-
     int cellW = width() / cols;
     int cellH = height() / rows;
 
-    p.setPen(Qt::gray);
-    for (int i = 0; i <= cols; ++i)
-        p.drawLine(i * cellW, 0, i * cellW, height());
-    for (int j = 0; j <= rows; ++j)
-        p.drawLine(0, j * cellH, width(), j * cellH);
+    QColor cellColor1(170, 215, 81);
+    QColor cellColor2(162, 209, 73);
 
-    p.setBrush(Qt::red);
-    for (auto& fruit : fruits)
-        p.drawEllipse(fruit.first * cellW, fruit.second * cellH, cellW, cellH);
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            p.setBrush((i + j) % 2 == 0 ? cellColor1 : cellColor2);
+            p.setPen(Qt::NoPen);
+            p.drawRect(j * cellW, i * cellH, cellW, cellH);
+        }
+    }
+
+    for (auto& fruit : fruits) {
+        QRadialGradient fruitGradient(fruit.first * cellW + cellW / 2, fruit.second * cellH + cellH / 2, cellW / 2);
+        fruitGradient.setColorAt(0, Qt::yellow);
+        fruitGradient.setColorAt(1, Qt::red);
+        p.setBrush(fruitGradient);
+        p.setPen(Qt::NoPen);
+        p.drawEllipse(fruit.first * cellW + 2, fruit.second * cellH + 2, cellW - 4, cellH - 4);
+    }
 
     for (size_t i = 0; i < snakeBody.size(); ++i) {
-        p.setBrush(i == 0 ? Qt::darkGreen : Qt::green);
-        p.drawRect(snakeBody[i].first * cellW, snakeBody[i].second * cellH, cellW, cellH);
+        QRect cellRect(snakeBody[i].first * cellW, snakeBody[i].second * cellH, cellW, cellH);
+
+        QColor baseColor = (i == 0) ? QColor(0, 100, 0) : QColor(0, 150, 0);
+        QColor altColor = (i == 0) ? QColor(0, 130, 0) : QColor(0, 180, 0); 
+
+        int checkerSize = cellW / 2;
+        for (int y = 0; y < 2; ++y) {
+            for (int x = 0; x < 2; ++x) {
+                QRect subRect(cellRect.x() + x * checkerSize, cellRect.y() + y * checkerSize, checkerSize, checkerSize);
+                p.setBrush((x + y) % 2 == 0 ? baseColor : altColor);
+                p.setPen(Qt::NoPen);
+                p.drawRect(subRect);
+            }
+        }
+
+        p.setPen(Qt::NoPen);
+        QPainterPath path;
+        path.addRoundedRect(cellRect, 5, 5);
+        p.fillPath(path, p.brush());
+
+        if (i == 0) {
+            p.setBrush(Qt::white);
+            int eyeSize = cellW / 5;
+            p.drawEllipse(cellRect.x() + cellW / 4 - eyeSize / 2, cellRect.y() + cellH / 4 - eyeSize / 2, eyeSize, eyeSize);
+            p.drawEllipse(cellRect.x() + 3 * cellW / 4 - eyeSize / 2, cellRect.y() + cellH / 4 - eyeSize / 2, eyeSize, eyeSize);
+        }
     }
+
     if (!snakeAlive) {
         p.setBrush(QColor(0, 0, 0, 150));
         p.drawRect(rect());
-        p.setPen(Qt::white);
-        p.setFont(QFont("Arial", 24, QFont::Bold));
+
+        p.setPen(Qt::black);
+        p.setFont(QFont("Arial", 28, QFont::Bold));
+        p.drawText(rect().adjusted(2, 2, 2, 2), Qt::AlignCenter, "GAME OVER");
+
+        p.setPen(Qt::red);
         p.drawText(rect(), Qt::AlignCenter, "GAME OVER");
     }
 
+    QString scoreText = QString::number(api->getScore());
+    p.setBrush(QColor(0, 0, 0, 150));
+    p.setPen(Qt::NoPen);
+    p.drawRoundedRect(10, 10, 80, 40, 10, 10);
+
     p.setPen(Qt::white);
-    p.setFont(QFont("Arial", 14, QFont::Bold));
-    p.drawText(10, 25, QString("Score: %1").arg(api->getScore()));
+    p.setFont(QFont("Arial", 16, QFont::Bold));
+    p.drawText(10, 10, 80, 40, Qt::AlignCenter, scoreText);
 }

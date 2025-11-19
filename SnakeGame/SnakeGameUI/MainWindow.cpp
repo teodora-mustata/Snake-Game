@@ -1,53 +1,35 @@
-
 #include "MainWindow.h"
-#include <QKeyEvent>
-#include "GameFactory.h"
 
-//MainWindow::MainWindow(IGameAPI* api, QWidget* parent)
-//    : QMainWindow(parent), gameApi(api)
-//{
-
-MainWindow::MainWindow(std::unique_ptr<IGameAPI> api, QWidget* parent)
-    : QMainWindow(parent), gameApi(std::move(api))
+MainWindow::MainWindow(QWidget* parent)
+    : QMainWindow(parent)
 {
-    //snakeWidget = new SnakeWidget(gameApi, this);
-    snakeWidget = new SnakeWidget(gameApi.get(), this);
-    setCentralWidget(snakeWidget);
-    resize(500, 500);
+    stack = new QStackedWidget(this);
+    setCentralWidget(stack);
 
-    connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &MainWindow::gameOver);
-    connect(snakeWidget, &SnakeWidget::restartSignal, this, &MainWindow::startGame);
+    menu = new MenuWidget();
+    game = new GameScreen();
+    scores = new BestScoresWidget();
 
-    gameTimer = new QTimer(this);
-    connect(gameTimer, &QTimer::timeout, [this]() {
-        gameApi->update(0.2);
+    stack->addWidget(menu);
+    stack->addWidget(game);
+    stack->addWidget(scores);
+
+    connect(menu->playButton, &QPushButton::clicked, [this]() {
+        stack->setCurrentIndex(1);
+        game->start();
         });
 
-    gameApi->initialize();
-    gameTimer->start(200);
-}
+    connect(menu->scoresButton, &QPushButton::clicked, [this]() {
+        stack->setCurrentIndex(2);
+        });
 
-void MainWindow::startGame() {
-    //delete gameApi;            
-    gameApi = createGameAPI();  
-    //snakeWidget->reset(gameApi);
-    snakeWidget->reset(gameApi.get());
-    connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &MainWindow::gameOver);
+    connect(menu->exitButton, &QPushButton::clicked, this, &MainWindow::close);
 
-    gameApi->initialize();
-    gameTimer->start(200);
-  
-}
-
-void MainWindow::gameOver() {
-    gameTimer->stop();
+    resize(500, 500);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {
-    switch (event->key()) {
-    case Qt::Key_W: gameApi->setSnakeDirection(Direction::Up); break;
-    case Qt::Key_S: gameApi->setSnakeDirection(Direction::Down); break;
-    case Qt::Key_A: gameApi->setSnakeDirection(Direction::Left); break;
-    case Qt::Key_D: gameApi->setSnakeDirection(Direction::Right); break;
+    if (stack->currentWidget() == game) {
+        game->keyPress(event);
     }
 }

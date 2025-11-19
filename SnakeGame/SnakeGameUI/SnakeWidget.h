@@ -1,4 +1,3 @@
-
 #pragma once
 #include <QWidget>
 #include <vector>
@@ -6,6 +5,7 @@
 #include "IObserverSnake.h"
 #include "IGameAPI.h"
 #include <QPushButton>
+#include <QPainterPath>
 
 class SnakeWidget : public QWidget, public IObserverMap, public IObserverSnake {
     Q_OBJECT

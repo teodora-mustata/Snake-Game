@@ -1,16 +1,10 @@
-
-
 #include <QApplication>
 #include "MainWindow.h"
-#include "GameFactory.h"  
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
-    /*IGameAPI* api = createGameAPI();   
-    MainWindow window(api);*/
-    auto api = createGameAPI();
-    MainWindow window(std::move(api));
+    MainWindow window;
     window.show();
 
     return app.exec();

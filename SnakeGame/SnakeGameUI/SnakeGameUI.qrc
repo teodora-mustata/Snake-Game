@@ -1,4 +1,5 @@
 <RCC>
     <qresource prefix="SnakeGameUI">
+        <file>snake_wallpaper.jpg</file>
     </qresource>
 </RCC>

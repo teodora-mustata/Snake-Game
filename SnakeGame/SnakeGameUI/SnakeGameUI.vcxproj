@@ -110,7 +110,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BestScoresWidget.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="MenuWidget.cpp" />
     <ClCompile Include="SnakeWidget.cpp" />
     <QtRcc Include="SnakeGameUI.qrc" />
     <QtUic Include="SnakeGameUI.ui" />
@@ -124,6 +127,16 @@
   <ItemGroup>
     <QtMoc Include="MainWindow.h" />
     <QtMoc Include="SnakeWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MenuWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BestScoresWidget.h" />
+    <QtMoc Include="GameScreen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\..\snake_wallpaper.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

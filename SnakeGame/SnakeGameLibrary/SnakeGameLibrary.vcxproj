@@ -30,6 +30,7 @@
     <ClInclude Include="ISubjectSnake.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Snake.h" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +39,7 @@
     <ClCompile Include="GameFactory.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

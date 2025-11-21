@@ -2,9 +2,14 @@
 #include <QWidget>
 
 class BestScoresWidget : public QWidget {
+    Q_OBJECT
 public:
-    BestScoresWidget(QWidget* parent = nullptr) : QWidget(parent) {
-        setWindowTitle("Best Scores");
-    }
-    //TODO: Stefi :)
+    explicit BestScoresWidget(QWidget* parent = nullptr);
+
+    void refreshScores();
+signals:
+    void backToMenu();
+
+protected:
+    void paintEvent(QPaintEvent* event) override;
 };

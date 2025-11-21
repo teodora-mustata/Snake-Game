@@ -163,4 +163,21 @@ void SnakeWidget::paintEvent(QPaintEvent*) {
     p.setPen(Qt::white);
     p.setFont(QFont("Arial", 16, QFont::Bold));
     p.drawText(10, 10, 80, 40, Qt::AlignCenter, scoreText);
+
+    int totalSeconds = static_cast<int>(api->getElapsedTime());
+    int minutes = totalSeconds / 60;
+    int seconds = totalSeconds % 60;
+
+    QString timeText = QString("%1:%2")
+        .arg(minutes, 2, 10, QChar('0'))
+        .arg(seconds, 2, 10, QChar('0'));
+
+    p.setBrush(QColor(0, 0, 0, 150));
+    p.setPen(Qt::NoPen);
+    p.drawRoundedRect(width() - 110, 10, 100, 40, 10, 10);
+
+    p.setPen(Qt::white);
+    p.setFont(QFont("Arial", 16, QFont::Bold));
+    p.drawText(width() - 110, 10, 100, 40, Qt::AlignCenter, timeText);
+
 }

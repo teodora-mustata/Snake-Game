@@ -63,11 +63,9 @@
     <QtMoc Include="GameScreen.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BestScoresWidget.h">
+    <QtMoc Include="BestScoresWidget.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\..\snake_wallpaper.jpg">

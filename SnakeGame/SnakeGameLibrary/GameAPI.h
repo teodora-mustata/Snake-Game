@@ -12,6 +12,9 @@ private:
     Score score;
     GameController controller;
 
+    double elapsedTime = 0.0;
+
+
 public:
     GameAPI();
 
@@ -22,8 +25,12 @@ public:
     void update(double deltaTime) override;
     void setSnakeDirection(Direction dir) override;
 
+
+
     std::vector<std::pair<int, int>> getFruits() const override;
     std::vector<std::pair<int, int>> getSnakeBody() const override;
     int getScore() const override;
+    double getElapsedTime() const override;
+
 };
 

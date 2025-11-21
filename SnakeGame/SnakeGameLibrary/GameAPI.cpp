@@ -23,6 +23,7 @@ void GameAPI::initialize() {
 }
 
 void GameAPI::update(double deltaTime) {
+    elapsedTime += deltaTime;
     controller.update(deltaTime);
 }
 
@@ -41,3 +42,7 @@ std::vector<std::pair<int, int>> GameAPI::getSnakeBody() const {
 int GameAPI::getScore() const {
     return score.getPoints();
 }
+double GameAPI::getElapsedTime() const {
+    return elapsedTime;
+}
+

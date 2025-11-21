@@ -1,5 +1,6 @@
 ﻿#include "GameScreen.h"
 #include "GameFactory.h"
+#include "ScoreManager.h"
 #include <QKeyEvent>
 
 GameScreen::GameScreen(QWidget* parent)
@@ -14,8 +15,8 @@ GameScreen::GameScreen(QWidget* parent)
     connect(snakeWidget, &SnakeWidget::gameOverSignal, this, &GameScreen::gameOver);
     connect(snakeWidget, &SnakeWidget::restartSignal, this, &GameScreen::restartGame);
     connect(snakeWidget, &SnakeWidget::backToMenuSignal, [this]() {
-        gameTimer->stop();                // oprește timerul
-        emit backToMenuRequested();       // semnal nou pentru MainWindow
+        gameTimer->stop();                
+        emit backToMenuRequested();       
         });
 
 
@@ -33,6 +34,11 @@ void GameScreen::start()
 
 void GameScreen::gameOver() {
     gameTimer->stop();
+
+    int finalScore = gameApi->getScore();
+    double finalTime = gameApi->getElapsedTime();
+
+    ScoreManager::saveScore(finalScore, finalTime);
     //emit gameFinished();
 }
 

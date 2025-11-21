@@ -18,6 +18,8 @@ public:
     virtual std::vector<std::pair<int, int>> getFruits() const = 0;
     virtual std::vector<std::pair<int, int>> getSnakeBody() const = 0;
     virtual int getScore() const = 0;
+    virtual double getElapsedTime() const = 0;
+
 
     virtual ~IGameAPI() = default;
 };

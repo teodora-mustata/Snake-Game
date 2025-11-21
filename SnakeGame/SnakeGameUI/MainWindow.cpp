@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget* parent)
         });
 
     connect(menu->scoresButton, &QPushButton::clicked, [this]() {
+        scores->refreshScores();
         stack->setCurrentIndex(2);
         });
 
@@ -27,6 +28,10 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(game, &GameScreen::backToMenuRequested, [this]() {
         stack->setCurrentIndex(0);
+        });
+
+    connect(scores, &BestScoresWidget::backToMenu, [this]() {
+        stack->setCurrentIndex(0); 
         });
 
     resize(500, 500);

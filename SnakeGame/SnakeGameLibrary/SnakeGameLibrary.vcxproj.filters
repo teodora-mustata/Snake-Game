@@ -49,6 +49,9 @@
     <ClInclude Include="GameAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameController.cpp">
@@ -67,6 +70,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

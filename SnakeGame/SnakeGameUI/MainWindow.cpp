@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget* parent)
         stack->setCurrentIndex(0); 
         });
 
-    resize(500, 500);
+    setFixedSize(500, 500);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {

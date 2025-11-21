@@ -14,6 +14,7 @@ public:
 
     void start();
     void keyPress(QKeyEvent* event);
+    void restartGame();
 
 signals:
     void gameFinished();
@@ -21,7 +22,6 @@ signals:
 
 private slots:
     void gameOver();
-    void restartGame();
 
 private:
     std::unique_ptr<IGameAPI> gameApi;

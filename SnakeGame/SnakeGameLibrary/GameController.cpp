@@ -14,13 +14,11 @@ void GameController::increaseDifficulty() {
     difficultyLevel++;
 
     //moveInterval = std::max(0.05, moveInterval - 0.03);
-    moveInterval = std::max(0.12, moveInterval - 0.06); // creste viteza mai agresiv
-
+    moveInterval = std::max(0.12, moveInterval - 0.05);
     if (maxFruits < 5)
         maxFruits++;
 
-    // (optional) scade timpul pana la spawn
-    // nextSpawnSec = std::max(1, nextSpawnSec - 1);
+     nextSpawnSec = std::max(1, nextSpawnSec - 1);
 }
 
 void GameController::scheduleNextSpawnSec() {

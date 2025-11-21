@@ -17,8 +17,7 @@ private:
     int nextSpawnSec = 0;
 
     double moveElapsed = 0.0;
-    //double moveInterval = 0.20;
-    double moveInterval = 0.45; // incepe mai lent
+    double moveInterval = 0.40;
 
     int maxFruits = 1;
 

@@ -4,6 +4,8 @@
 #include "IObserverSnake.h"
 #include "EnumEvents.h"
 
+class Map;
+
 class Snake : public ISubjectSnake {
 private:
     std::vector<IObserverSnake*> observers;

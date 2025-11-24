@@ -13,7 +13,6 @@ GameController::GameController(Map& m, Snake& s, Score& sc)
 void GameController::increaseDifficulty() {
     difficultyLevel++;
 
-    //moveInterval = std::max(0.05, moveInterval - 0.03);
     moveInterval = std::max(0.12, moveInterval - 0.05);
     if (maxFruits < 5)
         maxFruits++;

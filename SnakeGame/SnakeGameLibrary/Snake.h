@@ -3,8 +3,9 @@
 #include "ISubjectSnake.h"
 #include "IObserverSnake.h"
 #include "EnumEvents.h"
+#include "Map.h"
 
-class Map;
+
 
 class Snake : public ISubjectSnake {
 private:
@@ -12,7 +13,9 @@ private:
 
     std::vector<std::pair<int, int>> body;
     Direction direction;
+    Direction nextDirection;
     bool alive;
+
 public:
     Snake(int startX = 0, int startY = 0);
 
@@ -25,9 +28,7 @@ public:
     void hitWall();
     void hitSelf();
 
-   // void checkCollisions(Map& map);
     void setDirection(Direction newDir);
-    // std::pair<int, int> getHeadPosition() const;
     const std::vector<std::pair<int, int>>& getBody() const;
 
     bool isAlive() const { return alive; }

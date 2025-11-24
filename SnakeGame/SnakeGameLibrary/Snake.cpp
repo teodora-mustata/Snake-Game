@@ -1,11 +1,12 @@
-﻿#include <algorithm>
+﻿#include "Snake.h"
+#include <algorithm>
 #include "IObserverSnake.h"
-#include "Map.h"
-#include "Snake.h"
 
 
 Snake::Snake(int startX, int startY)
-    : direction(Direction::Right), alive(true)
+    : direction(Direction::Right),
+    nextDirection(Direction::Right),
+    alive(true)
 {
     body.push_back({ startX, startY });
 }
@@ -33,11 +34,14 @@ void Snake::setDirection(Direction newDir) {
         (direction == Direction::Right && newDir == Direction::Left))
         return;
 
-    direction = newDir;
+    nextDirection = newDir;
 }
 
 void Snake::move(Map& map) {
     if (!alive) return;
+
+    direction = nextDirection;
+
     std::pair<int, int> head = body.front();
     int headX = head.first;
     int headY = head.second;
@@ -69,7 +73,6 @@ void Snake::move(Map& map) {
     }
 
     body.insert(body.begin(), { headX, headY });
-
     notify(SnakeEvent::Move);
 }
 
@@ -92,10 +95,7 @@ void Snake::hitSelf()
     notify(SnakeEvent::HitSelf);
 
 }
-//
-//std::pair<int, int> Snake::getHeadPosition() const {
-//    return body.front();
-//}
+
 
 const std::vector<std::pair<int, int>>& Snake::getBody() const {
     return body;

@@ -39,7 +39,7 @@ void GameScreen::gameOver() {
     double finalTime = gameApi->getElapsedTime();
 
     ScoreManager::saveScore(finalScore, finalTime);
-    //emit gameFinished();
+  
 }
 
 void GameScreen::restartGame() {
